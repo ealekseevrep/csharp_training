@@ -16,7 +16,6 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Ivan", "Ivanov");
             app.Contact.FillAddContactForm(contact);
             app.Contact.SubmitContactCreation();
-            app.Auth.Logout();
         }
     }
 }
