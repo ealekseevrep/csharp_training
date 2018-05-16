@@ -25,13 +25,11 @@ namespace WebAddressbookTests
 
         public ContactHelper Modify(int p, ContactData newContactData)
         {
-            SelectContact(p);
-            InitContactModification();
+            InitContactModification(p);
             FillAddContactForm(newContactData);
             SubmitContactModification();
             return this;
         }
-
 
         public ContactHelper Remove(int p)
         {
@@ -53,9 +51,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        private ContactHelper InitContactModification()
+        private ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])[" + index + "]")).Click();
             return this;
         }
 
