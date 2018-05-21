@@ -44,20 +44,7 @@ namespace WebAddressbookTests
 
         private ContactHelper SelectContact(int index)
         {
-            ContactData contact = new ContactData("Petr");
-            contact.Lastname = ("Petrov");
-            var contactSelection = By.XPath("(//input[@name='selected[]'])[" + index + "]");
-
-            if (IsElementPresent(contactSelection))
-            {
-                driver.FindElement(contactSelection).Click();
-            }
-            else
-            {
-                Create(contact);
-                manager.Navigator.GoToHomePage();
-                driver.FindElement(contactSelection).Click();
-            }
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 
@@ -101,6 +88,20 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            return this;
+        }
+
+        public ContactHelper CheckContact()
+        {
+            ContactData contact = new ContactData("Petr");
+            contact.Lastname = ("Petrov");
+            var contactEdit = By.XPath("//img[@alt='Edit']");
+
+            if (!IsElementPresent(contactEdit))
+            {
+                Create(contact);
+                manager.Navigator.GoToHomePage();
+            }
             return this;
         }
     }

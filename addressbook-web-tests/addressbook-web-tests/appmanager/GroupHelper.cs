@@ -86,26 +86,28 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            GroupData group = new GroupData("aaa");
-            group.Header = "sss";
-            group.Footer = "fff";
-            var groupSelection = By.XPath("(//input[@name='selected[]'])[" + index + "]");
-
-            if (IsElementPresent(groupSelection))
-            {
-                driver.FindElement(groupSelection).Click();
-            }
-            else
-            {
-                Create(group);
-                driver.FindElement(groupSelection).Click();
-            }
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
             return this;
         }
 
         public GroupHelper ReturnToGroupsPage()
         {
             driver.FindElement(By.LinkText("group page")).Click();
+            return this;
+        }
+
+        public GroupHelper CheckGroup()
+        {
+            GroupData group = new GroupData("qqq");
+            group.Header = "ttt";
+            group.Footer = "ooo";
+            var groupSelection = By.XPath("//input[@name='selected[]']");
+
+            manager.Navigator.GoToGroupsPage();
+            if (!IsElementPresent(groupSelection))
+            {
+                Create(group);
+            }
             return this;
         }
     }
