@@ -66,12 +66,9 @@ namespace WebAddressbookTests
 
         public GroupHelper FillGroupForm(GroupData group)
         {
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(group.Name);
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(group.Header);
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(group.Footer);
+            Type(By.Name("group_name"), group.Name);
+            Type(By.Name("group_header"), group.Header);
+            Type(By.Name("group_footer"), group.Footer);
             return this;
         }
 
@@ -89,7 +86,20 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            GroupData group = new GroupData("aaa");
+            group.Header = "sss";
+            group.Footer = "fff";
+            var groupSelection = By.XPath("(//input[@name='selected[]'])[" + index + "]");
+
+            if (IsElementPresent(groupSelection))
+            {
+                driver.FindElement(groupSelection).Click();
+            }
+            else
+            {
+                Create(group);
+                driver.FindElement(groupSelection).Click();
+            }
             return this;
         }
 

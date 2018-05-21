@@ -7,13 +7,13 @@ using NUnit.Framework;
 namespace WebAddressbookTests 
 {
     [TestFixture]
-    public class ContactCreationTests : TestBase
+    public class ContactCreationTests : AuthTestBase
     {
         [Test]
         public void ContactCreationTest()
         {
             ContactData contact = new ContactData("Ivan");
-            contact.Lastname = ("");
+            contact.Lastname = ("Ivanov");
 
             app.Contact.Create(contact);
         }
