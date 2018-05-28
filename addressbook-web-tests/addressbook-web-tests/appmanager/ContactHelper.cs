@@ -23,33 +23,38 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactList()
         {
             manager.Navigator.GoToHomePage();
 
-            //Получаем список всех строк таблицы контактов
-            IWebElement table = driver.FindElement(By.ClassName("sortcompletecallback-applyZebra"));
-            List<ContactData> contacts = new List<ContactData>();
-            List<IWebElement> Rows = new List<IWebElement>(table.FindElements(By.XPath("//tr[@name='entry']")));
-            List<List<IWebElement>> table_element = new List<List<IWebElement>>();
-
-            //Цикл по найденным строкам, берем текст из ячеек
-            for (int k = 0; k < Rows.Count; k++)
+            if (contactCache == null)
             {
-                table_element.Add(new List<IWebElement>(Rows[0].FindElements(By.XPath("//tr[@name='entry']/ td[text()]"))));
-            }
+                contactCache = new List<ContactData>();
+                //Получаем список всех строк таблицы контактов
+                IWebElement table = driver.FindElement(By.ClassName("sortcompletecallback-applyZebra"));
+                List<IWebElement> Rows = new List<IWebElement>(table.FindElements(By.XPath("//tr[@name='entry']")));
+                List<List<IWebElement>> table_element = new List<List<IWebElement>>();
 
-            //Добавляем текст в коллекцию
-            for (int k = 0; k < Rows.Count * 2; k++)
-            {
+                //Цикл по найденным строкам, берем текст из ячеек
+                for (int k = 0; k < Rows.Count; k++)
+                {
+                    table_element.Add(new List<IWebElement>(Rows[0].FindElements(By.XPath("//tr[@name='entry']/ td[text()]"))));
+                }
+
+                //Добавляем текст в коллекцию
+                for (int k = 0; k < Rows.Count * 2; k++)
+                {
                     k++;
                     ContactData contact = new ContactData(table_element[0][k].Text);
                     k--;
                     contact.Lastname = table_element[0][k].Text;
                     k++;
-                    contacts.Add(contact);
+                    contactCache.Add(contact);
+                }
             }
-            return contacts;
+            return new List<ContactData>(contactCache);
         }
 
 
@@ -81,6 +86,7 @@ namespace WebAddressbookTests
         private ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -93,6 +99,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -118,6 +125,7 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            contactCache = null;
             return this;
         }
 
