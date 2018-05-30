@@ -78,15 +78,14 @@ namespace WebAddressbookTests
 
                 List<ContactData> contacts = new List<ContactData>();
 
-                ICollection<IWebElement> elements = new List<IWebElement>(driver.FindElements(By.Name("entry")));
+                ICollection<IWebElement> Rows = new List<IWebElement>(driver.FindElements(By.Name("entry")));
 
             if (contactCache == null)
             {
                 contactCache = new List<ContactData>();
-                for (int k = 0; k < elements.Count; k++)
+                foreach (var row in Rows)
                 {
-                    IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[k]
-                                                        .FindElements(By.TagName("td"));
+                    var cells = row.FindElements(By.TagName("td"));
                     ContactData contact = new ContactData(cells[2].Text);
                     contact.Lastname = cells[1].Text;
                     contactCache.Add(contact);
