@@ -35,11 +35,25 @@ namespace WebAddressbookTests
             };
         }
 
+        public ContactData GetContactInformationFromDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            GoToDetails(0);
+
+            string allContacts = driver.FindElement(By.Id("content")).Text;
+
+            return new ContactData(null)
+            {
+                AllContacts = allContacts
+            };
+        }
+
         public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToHomePage();
             InitContactModification(0);
             string firstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string middlename = driver.FindElement(By.Name("middlename")).GetAttribute("value");
             string lastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
             string address = driver.FindElement(By.Name("address")).GetAttribute("value");
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
@@ -51,6 +65,7 @@ namespace WebAddressbookTests
 
             return new ContactData(firstname, lastname)
             {
+                MiddleName = middlename,
                 Address = address,
                 HomePhone = homePhone,
                 MobilePhone = mobilePhone,
@@ -128,6 +143,14 @@ namespace WebAddressbookTests
         {
             driver.FindElements(By.Name("entry"))[index]
                             .FindElements(By.TagName("td"))[7]
+                            .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
+        private ContactHelper GoToDetails(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                            .FindElements(By.TagName("td"))[6]
                             .FindElement(By.TagName("a")).Click();
             return this;
         }
