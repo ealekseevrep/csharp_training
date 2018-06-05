@@ -44,12 +44,27 @@ namespace WebAddressbookTests
             return "firstname=" + Firstname + " lastname=" + Lastname;
         }
 
+        //public int CompareTo(ContactData other)
+        //{
+        //    ContactData obj = (ContactData)other;
+
+
+        //    if (Object.ReferenceEquals(other.Firstname, null) || Object.ReferenceEquals(other.Lastname, null))
+        //    {
+        //        return 1;
+        //    }
+
+        //    int lastname = Lastname.CompareTo(other.Lastname);
+        //    int firstname = Firstname.CompareTo(other.Firstname);
+        //    return lastname + firstname;
+        //}
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (Object.ReferenceEquals(other.Firstname, null))
             {
                 return 1;
             }
+
             return Firstname.CompareTo(other.Firstname);
         }
 
@@ -110,15 +125,40 @@ namespace WebAddressbookTests
                 {
                     return allEmails;
                 }
+
+                if (Email2 == "" && Email3 == "")
+                {
+                    return Email;
+                }
+
+                if (Email2 == "")
+                {   
+                    return PrepareMail(Email) + PrepareMail(Email3);
+                }
+
+                if (Email3 == "")
+                {
+                    return PrepareMail(Email) + Email2;
+                }
+
                 else
                 {
-                    return Email + "\r\n" + Email2 + "\r\n" + Email3;
+                    return PrepareMail(Email) + PrepareMail(Email2) + Email3;
                 }
             }
             set
             {
                 allEmails = value;
             }
+        }
+
+        private string PrepareMail(string mail)
+        {
+            if (mail == null || mail == "")
+            {
+                return "";
+            }
+            return mail + "\r\n";
         }
 
         public string AllContacts
