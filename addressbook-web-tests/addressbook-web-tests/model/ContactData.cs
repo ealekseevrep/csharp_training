@@ -41,7 +41,7 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "firstname=" + Firstname + " lastname=" + Lastname;
+            return "firstname=" + Firstname + "\nlastname=" + Lastname;
         }
 
         //public int CompareTo(ContactData other)
@@ -178,6 +178,18 @@ namespace WebAddressbookTests
             set
             {
                 allContacts = value;
+            }
+        }
+
+        private string PrepareContacts(string contact)
+        {
+            if (contact == null || contact == "")
+            {
+                return "";
+            }
+            else
+            {
+                return contact + "\r\n";
             }
         }
     }
