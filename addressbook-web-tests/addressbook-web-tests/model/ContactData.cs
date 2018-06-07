@@ -171,10 +171,11 @@ namespace WebAddressbookTests
                 {
                     return allContacts;
                 }
+
                 else
                 {
-                    return Firstname + " " + MiddleName + " " + Lastname + "\r\n" + Address + "\r\n" + "\r\nH: " + HomePhone + "\r\nM: " +
-                        MobilePhone + "\r\nW: " + WorkPhone + "\r\n\r\n" + Email + "\r\n" + Email2 + "\r\n" + Email3;
+                    return PrepareFio(Firstname + MiddleName + Lastname) + "\r\n" + PreparePhones(Address) + PreparePhones(HomePhone) 
+                        + PreparePhones(MobilePhone) + PreparePhones(WorkPhone) + "\r\n\r\n" + PrepareMail(Email) + PrepareMail(Email2) + Email3;
                 }
             }
             set
@@ -183,12 +184,68 @@ namespace WebAddressbookTests
             }
         }
 
-        private string PrepareContacts(string contact)
+        private string PrepareFio(string contact)
         {
             if (contact == null || contact == "")
             {
                 return "";
             }
+
+            if (MiddleName == "" && Lastname == "")
+            {
+                return Firstname;
+            }
+
+            if (MiddleName != "" && Lastname == "")
+            {
+                    return Firstname + " " + Lastname;
+            }
+
+            if (MiddleName == "" && Lastname != "")
+            {
+                return Firstname + " " + Lastname;
+            }
+
+            if (Firstname == "" && MiddleName != "")
+            {
+                if (Lastname != "")
+                {
+                    return MiddleName + " " + Lastname;
+                }
+                else
+                {
+                    return MiddleName;
+                }
+            }
+
+            else
+            {
+                return Firstname + " " + MiddleName + " " + Lastname;
+            }
+        }
+
+        private string PreparePhones(string contact)
+        {
+            if (contact == null || contact == "")
+            {
+                return "";
+            }
+
+            if (contact == HomePhone)
+            {
+                return "\r\nH: " + HomePhone;
+            }
+
+            if (contact == MobilePhone)
+            {
+                return "\r\nM: " + MobilePhone;
+            }
+
+            if (contact == WorkPhone)
+            {
+                return "\r\nW: " + WorkPhone;
+            }
+
             else
             {
                 return contact + "\r\n";
