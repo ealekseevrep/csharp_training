@@ -174,8 +174,8 @@ namespace WebAddressbookTests
 
                 else
                 {
-                    return PrepareFio(Firstname + MiddleName + Lastname) + "\r\n" + PreparePhones(Address) + PreparePhones(HomePhone) 
-                        + PreparePhones(MobilePhone) + PreparePhones(WorkPhone) + "\r\n\r\n" + PrepareMail(Email) + PrepareMail(Email2) + Email3;
+                    return PrepareFio(Firstname + MiddleName + Lastname) + "\r\n" + PrepareContacts(Address) + PrepareContacts(HomePhone) 
+                        + PrepareContacts(MobilePhone) + PrepareContacts(WorkPhone) + "\r\n\r\n" + PrepareMail(Email) + PrepareMail(Email2) + Email3;
                 }
             }
             set
@@ -224,7 +224,7 @@ namespace WebAddressbookTests
             }
         }
 
-        private string PreparePhones(string contact)
+        private string PrepareContacts(string contact)
         {
             if (contact == null || contact == "")
             {
