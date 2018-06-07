@@ -41,31 +41,33 @@ namespace WebAddressbookTests
 
         public override string ToString()
         {
-            return "firstname=" + Firstname + "\nlastname=" + Lastname;
+            return "firstName=" + Firstname + " \nlastName=" + Lastname;
         }
 
-        //public int CompareTo(ContactData other)
-        //{
-        //    ContactData obj = (ContactData)other;
-
-
-        //    if (Object.ReferenceEquals(other.Firstname, null) || Object.ReferenceEquals(other.Lastname, null))
-        //    {
-        //        return 1;
-        //    }
-
-        //    int lastname = Lastname.CompareTo(other.Lastname);
-        //    int firstname = Firstname.CompareTo(other.Firstname);
-        //    return lastname + firstname;
-        //}
         public int CompareTo(ContactData other)
         {
+
+
             if (Object.ReferenceEquals(other.Firstname, null))
             {
                 return 1;
             }
 
-            return Firstname.CompareTo(other.Firstname);
+            if (Object.ReferenceEquals(other.Lastname, null))
+            {
+                return 1;
+            }
+
+            if (Object.ReferenceEquals(other.Lastname, Lastname))
+            {
+                return Firstname.CompareTo(other.Firstname);
+            }
+
+            else
+            {
+                return Lastname.CompareTo(other.Lastname);
+            }
+
         }
 
         public string Firstname { get; set; }
