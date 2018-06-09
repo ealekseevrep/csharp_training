@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGroupData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupData>
+    <Name>xml1</Name>
+    <Header>xml2</Header>
+    <Footer>xml3</Footer>
+  </GroupData>
+  <GroupData>
+    <Name>&lt;WZ*D</Name>
+    <Header>7!U,W</Header>
+    <Footer>"R!=-Q-%:D[</Footer>
+  </GroupData>
+</ArrayOfGroupData>
