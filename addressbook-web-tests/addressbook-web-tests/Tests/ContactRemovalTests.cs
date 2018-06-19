@@ -7,20 +7,19 @@ using System.Collections.Generic;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactRemovalTests : AuthTestBase
-    {       
+    public class ContactRemovalTests : ContactTestBase
+    {
         [Test]
         public void ContactRemovalTest()
         {
-            List<ContactData> oldContacts = app.Contact.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData toBeRemove = oldContacts[0];
 
             app.Contact.CheckContact();
-            app.Contact.Remove(1);
-
-            List<ContactData> newContacts = app.Contact.GetContactList();
+            app.Contact.Remove(toBeRemove);
+            List<ContactData> newContacts = ContactData.GetAll();
             oldContacts.RemoveAt(0);
             Assert.AreEqual(oldContacts, newContacts);
-        } 
+        }
     }
-}
-                                                                          
+}                                                        
