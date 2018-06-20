@@ -46,6 +46,17 @@ namespace WebAddressbookTests
                 .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
         }
 
+        public void DeleteContactFromGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectGroupToDel(group.Name);
+            SelectContact(contact.Id);
+            CommitDeleteContactToGroup();
+
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
         private void ClearGroupFilter()
         {
             new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
@@ -64,6 +75,16 @@ namespace WebAddressbookTests
         private void CommitAddingContactToGroup()
         {
             driver.FindElement(By.Name("add")).Click();
+        }
+
+        private void SelectGroupToDel(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText(name);
+        }
+
+        private void CommitDeleteContactToGroup()
+        {
+            driver.FindElement(By.Name("remove")).Click();
         }
 
         public ContactData GetContactInformationFromDetails(int index)
