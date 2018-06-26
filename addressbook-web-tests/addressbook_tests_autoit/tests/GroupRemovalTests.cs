@@ -10,12 +10,12 @@ namespace addressbook_tests_white
     public class GroupRemovalTests : TestBase
     {       
         [Test]
-        public void GroupRemovalTest()
+        public void TestGroupDel()
         {
             List<GroupData> oldGroups = app.Groups.GetGroupList();
             GroupData toBeRemoved = oldGroups[0];
 
-            app.Groups.Add(toBeRemoved);
+            app.Groups.Del(toBeRemoved);
 
             List<GroupData> newGroups = app.Groups.GetGroupList();
 
