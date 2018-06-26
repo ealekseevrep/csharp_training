@@ -78,7 +78,6 @@ namespace WebAddressbookTests
             using (AddressbookDB db = new AddressbookDB())
             {
                 return (from g in db.Groups select g).ToList();
-
             }
         }
 

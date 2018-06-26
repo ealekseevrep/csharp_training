@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook-test-data-gener
 		{B75661AA-C877-4E92-A4AF-82618C38EF3B} = {B75661AA-C877-4E92-A4AF-82618C38EF3B}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "addressbook_tests_white", "addressbook_tests_autoit\addressbook_tests_white.csproj", "{FE3C5758-C418-4707-928E-06F8D20DE9DE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,6 +26,10 @@ Global
 		{43F105B2-8766-456B-8A6A-9CE90A6EFC86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43F105B2-8766-456B-8A6A-9CE90A6EFC86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43F105B2-8766-456B-8A6A-9CE90A6EFC86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE3C5758-C418-4707-928E-06F8D20DE9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE3C5758-C418-4707-928E-06F8D20DE9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE3C5758-C418-4707-928E-06F8D20DE9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE3C5758-C418-4707-928E-06F8D20DE9DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

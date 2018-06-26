@@ -256,6 +256,7 @@ namespace WebAddressbookTests
             ContactData contact = new ContactData("Petr");
             contact.Lastname = ("Petrov");
             var contactEdit = By.XPath("//img[@alt='Edit']");
+            manager.Navigator.GoToHomePage();
 
             if (!IsElementPresent(contactEdit))
             {
