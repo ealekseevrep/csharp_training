@@ -48,8 +48,7 @@ namespace addressbook_tests_white
         {
             Window dialogue = OpenGroupsDialog();
 
-            TextBox textBox = (TextBox)dialogue.Get(SearchCriteria.ByText(delGroup.Name));
-            textBox.Click();
+            dialogue.Get(SearchCriteria.ByText(delGroup.Name)).Click();
 
             dialogue.Get<Button>("uxDeleteAddressButton").Click();
             Keyboard.Instance.PressSpecialKey(KeyboardInput.SpecialKeys.RETURN);
